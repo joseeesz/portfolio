@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>José Luis Sánchez — Economista & Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f0e8;
+      --bg2: #ede8df;
+      --surface: #eae4d9;
+      --surface2: #e2dcd1;
+      --border: rgba(100,75,45,0.13);
+      --accent: #7a5c38;
+      --accent-dim: rgba(122,92,56,0.1);
+      --text: #2e2118;
+      --muted: #7a6e62;
+      --muted2: #a09288;
+      --serif: 'F37 Caslon Display', 'EB Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* textura de fondo suave */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        radial-gradient(ellipse at 15% 25%, rgba(180,145,90,0.08) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 75%, rgba(140,110,70,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(200,175,130,0.04) 0%, transparent 70%);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--accent); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 3rem 5rem;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* círculo decorativo */
+    #hero::after {
+      content: '';
+      position: absolute;
+      right: 5%; top: 50%; transform: translateY(-50%);
+      width: 500px; height: 500px; border-radius: 50%;
+      border: 1px solid rgba(122,92,56,0.08);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 5rem;
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid rgba(122,92,56,0.28);
+      padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.75rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.08; font-weight: 700;
+      color: var(--text); margin-bottom: 1.5rem; letter-spacing: -0.01em;
+    }
+    h1 span { color: var(--accent); }
+
+    .hero-roles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .role-pill {
+      font-size: 0.73rem; letter-spacing: 0.06em;
+      background: var(--accent-dim); color: var(--accent);
+      border: 1px solid rgba(122,92,56,0.18);
+      padding: 0.3rem 0.85rem; border-radius: 100px;
+    }
+
+    .hero-desc { color: var(--muted); font-size: 1rem; max-width: 460px; margin-bottom: 2.5rem; line-height: 1.85; }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem; border-radius: 3px;
+      font-size: 0.875rem; font-family: var(--sans);
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s; display: inline-block;
+    }
+    .btn-primary { background: var(--accent); color: #fff; font-weight: 500; border: none; }
+    .btn-primary:hover { background: #5e4528; }
+    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* hero lado derecho */
+    .hero-visual { display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; }
+
+    .visual-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      position: relative; overflow: hidden;
+    }
+    .visual-frame::before {
+      content: ''; position: absolute;
+      top: 0; left: 2rem; right: 2rem; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(122,92,56,0.4), transparent);
+    }
+    .visual-label {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted2); margin-bottom: 1.2rem;
+    }
+    .mini-bars { display: flex; flex-direction: column; gap: 0.8rem; }
+    .mini-bar-row { display: flex; align-items: center; gap: 0.75rem; }
+    .mini-bar-name { font-size: 0.76rem; color: var(--muted); min-width: 85px; }
+    .mini-bar-bg { flex: 1; height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
+    .mini-bar-fill { height: 2px; background: var(--accent); border-radius: 2px; }
+    .mini-bar-pct { font-size: 0.7rem; color: var(--muted2); min-width: 30px; text-align: right; }
+
+    .quote-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.4rem 1.6rem;
+    }
+    .quote-card p {
+      font-family: var(--serif); font-size: 1rem;
+      color: var(--muted); line-height: 1.65; font-style: italic;
+    }
+    .quote-card .quote-attr {
+      font-size: 0.73rem; color: var(--muted2); margin-top: 0.75rem;
+      letter-spacing: 0.05em; font-style: normal; font-family: var(--sans);
+    }
+
+    /* SECTIONS */
+    section { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+    h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1rem; color: var(--text); }
+    .section-divider { width: 3rem; height: 1px; background: var(--accent); opacity: 0.35; margin-bottom: 3rem; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+    .about-text { color: var(--muted); line-height: 1.9; }
+    .about-text p { margin-bottom: 1.1rem; font-size: 0.96rem; }
+    .skills-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .skill-item { display: flex; flex-direction: column; gap: 0.45rem; }
+    .skill-label {
+      font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--muted); display: flex; justify-content: space-between;
+    }
+    .skill-bar-bg { height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
+    .skill-bar { height: 2px; background: var(--accent); border-radius: 2px; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s; cursor: default;
+    }
+    .project-card:hover { border-color: rgba(122,92,56,0.35); transform: translateY(-2px); }
+    .project-tag {
+      display: inline-block; font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.1em;
+      background: var(--accent-dim); color: var(--accent);
+      padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 1rem;
+    }
+    .project-card h3 { font-family: var(--serif); font-size: 1.18rem; margin-bottom: 0.75rem; color: var(--text); }
+    .project-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.75; margin-bottom: 1.25rem; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tool-badge {
+      font-size: 0.67rem; background: var(--bg2); border: 1px solid var(--border);
+      color: var(--muted); padding: 0.2rem 0.65rem; border-radius: 3px;
+    }
+
+    /* EXPERIENCE */
+    .timeline { display: flex; flex-direction: column; }
+    .timeline-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { font-size: 0.76rem; color: var(--muted2); padding-top: 0.2rem; }
+    .timeline-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--text); }
+    .timeline-content .org { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.75rem; }
+    .timeline-content p { color: var(--muted); font-size: 0.87rem; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-text { color: var(--muted); line-height: 1.9; margin-bottom: 2rem; font-size: 0.95rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      text-decoration: none; color: var(--text); font-size: 0.87rem; transition: border-color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-icon { font-size: 1rem; width: 20px; text-align: center; color: var(--muted2); }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block; font-size: 0.73rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); padding: 0.75rem 1rem; border-radius: 6px;
+      font-family: var(--sans); font-size: 0.87rem; outline: none; transition: border-color 0.2s;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted2); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--muted2); font-size: 0.76rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-name { font-family: var(--serif); color: var(--accent); font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero, section { padding: 5rem 1.5rem 3rem; }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      #hero::after { display: none; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">JLS</div>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Disponible para colaboraciones</div>
+      <h1>Economista<br/>enfocado en<br/><span>Data & Estrategia</span></h1>
+
+      <div class="hero-roles">
+        <span class="role-pill">Economista</span>
+        <span class="role-pill">Data Analyst</span>
+        <span class="role-pill">Data Science</span>
+        <span class="role-pill">Estrategia Financiera</span>
+      </div>
+
+      <p class="hero-desc">
+        Uso datos para entender problemas reales y proponer soluciones efectivas.
+        Enfoque analítico y crítico para encontrar patrones que no siempre son evidentes.
+      </p>
+      <div class="btn-group">
+        <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+        <a href="#contacto" class="btn btn-outline">Contacto</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="visual-frame">
+        <div class="visual-label">Herramientas principales</div>
+        <div class="mini-bars">
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">Python</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:75%"></div></div>
+            <div class="mini-bar-pct">75%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">R</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
+            <div class="mini-bar-pct">80%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">Power BI</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
+            <div class="mini-bar-pct">80%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">Tableau</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
+            <div class="mini-bar-pct">80%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">Econometría</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:90%"></div></div>
+            <div class="mini-bar-pct">90%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">SQL</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:70%"></div></div>
+            <div class="mini-bar-pct">70%</div>
+          </div>
+          <div class="mini-bar-row">
+            <div class="mini-bar-name">ETL</div>
+            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:70%"></div></div>
+            <div class="mini-bar-pct">70%</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <p>"Uso datos para resolver problemas reales y generar decisiones con impacto."</p>
+        <div class="quote-attr">— José Luis Sánchez</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <div class="section-inner">
+    <div class="section-label">Perfil</div>
+    <h2>Sobre mí</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Soy economista enfocado en data analytics y data science. Me interesa entender cómo diferentes variables influyen en los resultados y usar esa información para apoyar mejores decisiones.</p>
+        <p>Tengo un enfoque analítico y crítico que me permite ver más allá de los datos y encontrar patrones o problemas que no siempre son evidentes.</p>
+        <p>A partir de mi formación en economía, aprendí a analizar información desde distintos ángulos, tanto a nivel individual como general, lo que me ayuda a darle contexto a los datos y no solo ver números aislados.</p>
+        <p>Trabajo con herramientas como Python, R, SQL, Excel, Power BI y Tableau para limpiar, organizar y analizar información. También tengo experiencia trabajando con bases de datos, APIs y procesos ETL, siempre cuidando que los datos sean confiables y estén disponibles cuando se necesitan.</p>
+        <p>Tengo experiencia en la interpretación de indicadores clave de desempeño, transformando datos en insights claros que apoyan la toma de decisiones.</p>
+        <p>Me caracterizo por ser una persona orientada a resultados, con buena capacidad de comunicación, pensamiento estructurado y facilidad para adaptarme a distintos entornos de trabajo. Busco aportar valor a través del análisis, la claridad en la información y una visión práctica enfocada en soluciones.</p>
+      </div>
+      <div>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-label"><span>Python</span><span>75%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>R</span><span>80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Power BI</span><span>80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Tableau</span><span>80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>Econometría & Modelos</span><span>90%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>SQL</span><span>70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label"><span>ETL</span><span>70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="section-inner">
+    <div class="section-label">Portafolio</div>
+    <h2>Proyectos destacados</h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">Fintech · Machine Learning</div>
+        <h3>Sistema de Detección de Fraude AML</h3>
+        <p>Pipeline completo de detección de lavado de dinero con datos sintéticos, feature engineering, modelo Random Forest, API FastAPI e integración con Power BI. ROI cuantificado en reportes ejecutivos.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">Random Forest</span>
+          <span class="tool-badge">FastAPI</span>
+          <span class="tool-badge">Power BI</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Riesgo Crediticio · BI</div>
+        <h3>Credit Risk Analytics — CNBV/Banxico</h3>
+        <p>Análisis de riesgo crediticio usando datos abiertos del sistema financiero mexicano (CNBV + Banxico). Dashboard interactivo con métricas de morosidad, segmentación de cartera y alertas de riesgo.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">Power BI</span>
+          <span class="tool-badge">CNBV Data</span>
+          <span class="tool-badge">Banxico API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Pagos · Analytics</div>
+        <h3>Fintech Payments Analytics — SPEI</h3>
+        <p>Análisis de flujos de pago del sistema SPEI de Banxico. Visualización de volúmenes, patrones de transferencias interbancarias y tendencias del sistema de pagos mexicano en Tableau.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Tableau</span>
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">SPEI Banxico</span>
+          <span class="tool-badge">ETL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Econometría · Forecasting</div>
+        <h3>Modelo Econométrico de Pronóstico</h3>
+        <p>Desarrollo de modelo de series de tiempo para pronóstico de variables macroeconómicas. Incluye análisis de estacionariedad, cointegración y evaluación de precisión predictiva.</p>
+        <div class="project-tools">
+          <span class="tool-badge">R</span>
+          <span class="tool-badge">Series de Tiempo</span>
+          <span class="tool-badge">ARIMA</span>
+          <span class="tool-badge">Econometría</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Consultoría · Valuación</div>
+        <h3>Consultoría y Valuación Financiera</h3>
+        <p>Análisis financiero integral a una empresa: revisión de balance general, estado de resultados y comportamiento de ventas. Se aplicó un modelo de valor ajustado con los hallazgos presentados en un informe ejecutivo.</p>
+        <div class="project-tools">
+          <span class="tool-badge">Valuación</span>
+          <span class="tool-badge">Análisis Financiero</span>
+          <span class="tool-badge">Excel</span>
+          <span class="tool-badge">Informe Ejecutivo</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <div class="section-inner">
+    <div class="section-label">Trayectoria</div>
+    <h2>Experiencia y formación</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-date">2024 — Presente</div>
+        <div class="timeline-content">
+          <h3>Consultor independiente en datos y estrategia</h3>
+          <div class="org">Proyectos financieros y de análisis</div>
+          <p>Desarrollo de modelos financieros, análisis de datos y estrategia para proyectos del sector privado, con enfoque en impacto medible y toma de decisiones basada en evidencia.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2021 — Presente</div>
+        <div class="timeline-content">
+          <h3>Licenciatura en Economía</h3>
+          <div class="org">Últimos semestres · México</div>
+          <p>Especialización en econometría, análisis cuantitativo, formulación de proyectos de inversión y finanzas aplicadas.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Abril 2026</div>
+        <div class="timeline-content">
+          <h3>Microsoft Power BI Data Analyst</h3>
+          <div class="org">Certificado Profesional · Microsoft <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <p>Data Visualization · Data Model · Data Analysis · Extract, Transform, Load · Microsoft Excel</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Noviembre 2025</div>
+        <div class="timeline-content">
+          <h3>IBM Data Analyst</h3>
+          <div class="org">Certificado Profesional · IBM <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <p>Python Programming · Microsoft Excel · Data Analysis · Spreadsheet Software · Data Visualization</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Septiembre 2025</div>
+        <div class="timeline-content">
+          <h3>Finanzas y Contabilidad para la Toma de Decisiones</h3>
+          <div class="org">Especialización · Universidad Anáhuac <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <p>Análisis financiero, contabilidad aplicada e interpretación de información para la toma de decisiones estratégicas.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">Enero 2026</div>
+        <div class="timeline-content">
+          <h3>Gestión de Proyectos</h3>
+          <div class="org">Especialización · Tecnológico de Monterrey <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <p>Metodologías de gestión, planificación y seguimiento de proyectos en entornos profesionales.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-inner">
+    <div class="section-label">Conectemos</div>
+    <h2>Contacto</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-text">
+          Abierto a oportunidades en análisis de datos, data science y estrategia financiera.
+          Si tienes un proyecto donde los datos puedan generar impacto real, con gusto conversamos.
+        </p>
+        <div class="contact-links">
+          <a href="/cdn-cgi/l/email-protection#4c38390c29212d2520622f2321" class="contact-link">
+            <span class="contact-icon">✉</span>
+            <span class="__cf_email__" data-cfemail="f58180b59098949c99db969a98">[email&#160;protected]</span>
+          </a>
+          <a href="https://linkedin.com/in/tu-perfil" class="contact-link" target="_blank">
+            <span class="contact-icon">in</span>
+            LinkedIn
+          </a>
+          <a href="https://github.com/tu-usuario" class="contact-link" target="_blank">
+            <span class="contact-icon">⌥</span>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" placeholder="tu@correo.com"/>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntame sobre tu proyecto o propuesta..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%">Enviar mensaje</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer
