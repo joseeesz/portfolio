@@ -1,262 +1,263 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>José Luis Sánchez — Economista & Data Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-    :root {
-      --bg: #f5f0e8;
-      --bg2: #ede8df;
-      --surface: #eae4d9;
-      --surface2: #e2dcd1;
-      --border: rgba(100,75,45,0.13);
-      --accent: #7a5c38;
-      --accent-dim: rgba(122,92,56,0.1);
-      --text: #2e2118;
-      --muted: #7a6e62;
-      --muted2: #a09288;
-      --serif: 'F37 Caslon Display', 'EB Garamond', Georgia, serif;
-      --sans: 'DM Sans', system-ui, sans-serif;
-    }
- 
-    html { scroll-behavior: smooth; }
- 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.7;
-    }
- 
-    /* textura de fondo suave */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        radial-gradient(ellipse at 15% 25%, rgba(180,145,90,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 75%, rgba(140,110,70,0.07) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 50%, rgba(200,175,130,0.04) 0%, transparent 70%);
-    }
- 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.25rem 3rem;
-      background: rgba(245,240,232,0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo { font-family: var(--serif); font-size: 1.15rem; color: var(--accent); letter-spacing: 0.02em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted); font-size: 0.8rem;
-      letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
- 
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 8rem 3rem 5rem;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      position: relative;
-    }
- 
-    #hero-canvas {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      z-index: 0; pointer-events: none; opacity: 0.6;
-    }
- 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 5rem;
-      max-width: 1100px; margin: 0 auto; width: 100%;
-      position: relative; z-index: 2;
-    }
-    .hero-tag {
-      display: inline-block; font-size: 0.7rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--accent);
-      border: 1px solid rgba(122,92,56,0.28);
-      padding: 0.35rem 0.9rem; border-radius: 2px; margin-bottom: 1.75rem;
-    }
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.6rem, 5vw, 4.2rem);
-      line-height: 1.08; font-weight: 700;
-      color: var(--text); margin-bottom: 1.5rem; letter-spacing: -0.01em;
-    }
-    h1 span { color: var(--accent); }
- 
-    .hero-roles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .role-pill {
-      font-size: 0.73rem; letter-spacing: 0.06em;
-      background: var(--accent-dim); color: var(--accent);
-      border: 1px solid rgba(122,92,56,0.18);
-      padding: 0.3rem 0.85rem; border-radius: 100px;
-    }
- 
-    .hero-desc { color: var(--muted); font-size: 1rem; max-width: 460px; margin-bottom: 2.5rem; line-height: 1.85; }
-    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn {
-      padding: 0.75rem 1.75rem; border-radius: 3px;
-      font-size: 0.875rem; font-family: var(--sans);
-      cursor: pointer; text-decoration: none;
-      transition: all 0.2s; display: inline-block;
-    }
-    .btn-primary { background: var(--accent); color: #fff; font-weight: 500; border: none; }
-    .btn-primary:hover { background: #5e4528; }
-    .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
- 
-    /* hero lado derecho */
-    .hero-visual { display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; }
- 
-    .visual-frame {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px; padding: 1.75rem;
-      position: relative; overflow: hidden;
-    }
-    .visual-frame::before {
-      content: ''; position: absolute;
-      top: 0; left: 2rem; right: 2rem; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(122,92,56,0.4), transparent);
-    }
-    .visual-label {
-      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted2); margin-bottom: 1.2rem;
-    }
-    .mini-bars { display: flex; flex-direction: column; gap: 0.8rem; }
-    .mini-bar-row { display: flex; align-items: center; gap: 0.75rem; }
-    .mini-bar-name { font-size: 0.76rem; color: var(--muted); min-width: 85px; }
-    .mini-bar-bg { flex: 1; height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
-    .mini-bar-fill { height: 2px; background: var(--accent); border-radius: 2px; }
-    .mini-bar-pct { font-size: 0.7rem; color: var(--muted2); min-width: 30px; text-align: right; }
- 
-    .quote-card {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.4rem 1.6rem;
-    }
-    .quote-card p {
-      font-family: var(--serif); font-size: 1rem;
-      color: var(--muted); line-height: 1.65; font-style: italic;
-    }
-    .quote-card .quote-attr {
-      font-size: 0.73rem; color: var(--muted2); margin-top: 0.75rem;
-      letter-spacing: 0.05em; font-style: normal; font-family: var(--sans);
-    }
- 
-    /* SECTIONS */
-    section { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
-    h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1rem; color: var(--text); }
-    .section-divider { width: 3rem; height: 1px; background: var(--accent); opacity: 0.35; margin-bottom: 3rem; }
- 
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
-    .about-text { color: var(--muted); line-height: 1.9; }
-    .about-text p { margin-bottom: 1.1rem; font-size: 0.96rem; }
-    .skills-list { display: flex; flex-direction: column; gap: 1.1rem; }
-    .skill-item { display: flex; flex-direction: column; gap: 0.45rem; }
-    .skill-label {
-      font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--muted); display: flex; justify-content: space-between;
-    }
-    .skill-bar-bg { height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
-    .skill-bar { height: 2px; background: var(--accent); border-radius: 2px; }
- 
-    /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s; cursor: default;
-    }
-    .project-card:hover { border-color: rgba(122,92,56,0.35); transform: translateY(-2px); }
-    .project-tag {
-      display: inline-block; font-size: 0.67rem; text-transform: uppercase; letter-spacing: 0.1em;
-      background: var(--accent-dim); color: var(--accent);
-      padding: 0.25rem 0.7rem; border-radius: 2px; margin-bottom: 1rem;
-    }
-    .project-card h3 { font-family: var(--serif); font-size: 1.18rem; margin-bottom: 0.75rem; color: var(--text); }
-    .project-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.75; margin-bottom: 1.25rem; }
-    .project-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .tool-badge {
-      font-size: 0.67rem; background: var(--bg2); border: 1px solid var(--border);
-      color: var(--muted); padding: 0.2rem 0.65rem; border-radius: 3px;
-    }
- 
-    /* EXPERIENCE */
-    .timeline { display: flex; flex-direction: column; }
-    .timeline-item {
-      display: grid; grid-template-columns: 160px 1fr;
-      gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border);
-    }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-date { font-size: 0.76rem; color: var(--muted2); padding-top: 0.2rem; }
-    .timeline-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--text); }
-    .timeline-content .org { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.75rem; }
-    .timeline-content p { color: var(--muted); font-size: 0.87rem; }
- 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .contact-text { color: var(--muted); line-height: 1.9; margin-bottom: 2rem; font-size: 0.95rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-link {
-      display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      text-decoration: none; color: var(--text); font-size: 0.87rem; transition: border-color 0.2s;
-    }
-    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
-    .contact-icon { font-size: 1rem; width: 20px; text-align: center; color: var(--muted2); }
- 
-    /* FORM */
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label {
-      display: block; font-size: 0.73rem; text-transform: uppercase;
-      letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.5rem;
-    }
-    .form-group input, .form-group textarea {
-      width: 100%; background: var(--surface); border: 1px solid var(--border);
-      color: var(--text); padding: 0.75rem 1rem; border-radius: 6px;
-      font-family: var(--sans); font-size: 0.87rem; outline: none; transition: border-color 0.2s;
-    }
-    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted2); }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-    .form-group textarea { min-height: 120px; resize: vertical; }
- 
-    /* FOOTER */
-    footer {
-      padding: 2rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      color: var(--muted2); font-size: 0.76rem;
-      border-top: 1px solid var(--border);
-    }
-    .footer-name { font-family: var(--serif); color: var(--accent); font-size: 1rem; }
- 
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      #hero, section { padding: 5rem 1.5rem 3rem; }
-      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      #hero::after { display: none; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>José Luis Sánchez — Economista & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#f4efe6;
+  --surface:#ede7db;
+  --surface2:#e5ddd0;
+  --border:rgba(100,75,45,0.12);
+  --accent:#7a5c38;
+  --accent-dim:rgba(122,92,56,0.1);
+  --text:#2a1e12;
+  --muted:#7a6e62;
+  --muted2:#a8998a;
+  --serif:'F37 Caslon Display','EB Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* WEBGL CANVAS — fondo global */
+#bg-canvas{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+
+/* todo el contenido sobre el canvas */
+nav,section,footer{position:relative;z-index:2}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.25rem 3rem;
+  background:rgba(244,239,230,0.75);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:0.78rem;
+  letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+
+/* HERO */
+#hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:9rem 3rem 5rem;
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{
+  max-width:800px;margin:0 auto;width:100%;
+  text-align:center;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(122,92,56,0.25);
+  padding:0.4rem 1rem;border-radius:100px;margin-bottom:2rem;
+}
+.hero-tag::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--accent);animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.4;transform:scale(0.7)}
+}
+h1{
+  font-family:var(--serif);
+  font-size:clamp(3rem,6vw,5.5rem);
+  line-height:1.05;font-weight:700;
+  color:var(--text);margin-bottom:1.5rem;letter-spacing:-0.02em;
+}
+h1 em{color:var(--accent);font-style:normal}
+.hero-sub{
+  color:var(--muted);font-size:1.05rem;
+  max-width:520px;margin:0 auto 1.75rem;line-height:1.85;
+}
+.hero-roles{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:0.5rem;margin-bottom:2.5rem;
+}
+.role-pill{
+  font-size:0.72rem;letter-spacing:0.06em;
+  background:rgba(122,92,56,0.08);color:var(--accent);
+  border:1px solid rgba(122,92,56,0.18);
+  padding:0.3rem 0.9rem;border-radius:100px;
+}
+.btn-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{
+  padding:0.8rem 2rem;border-radius:100px;
+  font-size:0.875rem;font-family:var(--sans);
+  cursor:pointer;text-decoration:none;
+  transition:all 0.25s;display:inline-block;
+}
+.btn-primary{background:var(--accent);color:#fff;font-weight:500;border:none}
+.btn-primary:hover{background:#5e4528;transform:translateY(-1px)}
+.btn-outline{
+  background:rgba(255,255,255,0.5);
+  border:1px solid var(--border);color:var(--text);
+  backdrop-filter:blur(8px);
+}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+/* SECTIONS */
+section{padding:7rem 3rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.85rem}
+h2{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.8rem);margin-bottom:1rem;color:var(--text)}
+.section-divider{width:3rem;height:1px;background:var(--accent);opacity:0.3;margin-bottom:3rem}
+
+/* SCROLL REVEAL */
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+              transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:start}
+.about-text{color:var(--muted);line-height:1.9}
+.about-text p{margin-bottom:1.1rem;font-size:0.96rem}
+.skills-list{display:flex;flex-direction:column;gap:1.1rem}
+.skill-item{display:flex;flex-direction:column;gap:0.45rem}
+.skill-label{
+  font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;
+  color:var(--muted);display:flex;justify-content:space-between;
+}
+.skill-bar-bg{height:2px;background:rgba(122,92,56,0.1);border-radius:2px;overflow:hidden}
+.skill-bar{
+  height:2px;background:var(--accent);border-radius:2px;
+  width:0;transition:width 1.2s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.25rem}
+.project-card{
+  background:rgba(255,255,255,0.45);
+  border:1px solid var(--border);border-radius:16px;
+  padding:1.75rem;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:border-color 0.25s,transform 0.3s cubic-bezier(0.22,1,0.36,1),
+             box-shadow 0.3s;cursor:default;
+}
+.project-card:hover{
+  border-color:rgba(122,92,56,0.3);
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(100,75,45,0.1);
+}
+.project-tag{
+  display:inline-block;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.1em;
+  background:var(--accent-dim);color:var(--accent);
+  padding:0.25rem 0.7rem;border-radius:100px;margin-bottom:1rem;
+}
+.project-card h3{font-family:var(--serif);font-size:1.15rem;margin-bottom:0.75rem;color:var(--text)}
+.project-card p{color:var(--muted);font-size:0.87rem;line-height:1.75;margin-bottom:1.25rem}
+.project-tools{display:flex;flex-wrap:wrap;gap:0.4rem}
+.tool-badge{
+  font-size:0.67rem;background:rgba(122,92,56,0.06);
+  border:1px solid rgba(122,92,56,0.15);
+  color:var(--muted);padding:0.2rem 0.65rem;border-radius:100px;
+}
+
+/* EXPERIENCE */
+.timeline{display:flex;flex-direction:column}
+.timeline-item{
+  display:grid;grid-template-columns:160px 1fr;
+  gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border);
+}
+.timeline-item:last-child{border-bottom:none}
+.timeline-date{font-size:0.76rem;color:var(--muted2);padding-top:0.2rem}
+.timeline-content h3{font-size:1rem;font-weight:500;margin-bottom:0.2rem;color:var(--text)}
+.timeline-content .org{font-size:0.82rem;color:var(--accent);margin-bottom:0.65rem}
+.timeline-content p{color:var(--muted);font-size:0.87rem}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-text{color:var(--muted);line-height:1.9;margin-bottom:2rem;font-size:0.95rem}
+.contact-links{display:flex;flex-direction:column;gap:0.85rem}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;
+  background:rgba(255,255,255,0.45);border:1px solid var(--border);border-radius:12px;
+  text-decoration:none;color:var(--text);font-size:0.87rem;
+  backdrop-filter:blur(8px);transition:border-color 0.2s,transform 0.2s;
+}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(4px)}
+.contact-icon{font-size:0.95rem;width:20px;text-align:center;color:var(--muted2)}
+.form-group{margin-bottom:1.25rem}
+.form-group label{
+  display:block;font-size:0.72rem;text-transform:uppercase;
+  letter-spacing:0.1em;color:var(--muted);margin-bottom:0.5rem;
+}
+.form-group input,.form-group textarea{
+  width:100%;
+  background:rgba(255,255,255,0.5);
+  border:1px solid var(--border);
+  color:var(--text);padding:0.75rem 1rem;border-radius:10px;
+  font-family:var(--sans);font-size:0.87rem;outline:none;
+  backdrop-filter:blur(8px);
+  transition:border-color 0.2s;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted2)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group textarea{min-height:120px;resize:vertical}
+
+/* FOOTER */
+footer{
+  padding:2rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  color:var(--muted2);font-size:0.75rem;
+  border-top:1px solid var(--border);
+}
+.footer-name{font-family:var(--serif);color:var(--accent);font-size:1rem}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  #hero,section{padding:6rem 1.5rem 3rem}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .timeline-item{grid-template-columns:1fr;gap:0.25rem}
+  footer{flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
 </head>
 <body>
- 
+
+<!-- FONDO ANIMADO WebGL -->
+<canvas id="bg-canvas"></canvas>
+
 <nav>
   <div class="nav-logo">JLS</div>
   <ul class="nav-links">
@@ -266,49 +267,37 @@
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
- 
+
 <!-- HERO -->
 <section id="hero">
-  <canvas id="hero-canvas"></canvas>
-  <div class="hero-grid">
-    <div>
-      <div class="hero-tag">Disponible para colaboraciones</div>
-      <h1>Economista<br/>enfocado en<br/><span>Data & Estrategia</span></h1>
- 
-      <div class="hero-roles">
-        <span class="role-pill">Economista</span>
-        <span class="role-pill">Data Analyst</span>
-        <span class="role-pill">Data Science</span>
-        <span class="role-pill">Estrategia Financiera</span>
-      </div>
- 
-      <p class="hero-desc">
-        Uso datos para entender problemas reales y proponer soluciones efectivas.
-        Enfoque analítico y crítico para encontrar patrones que no siempre son evidentes.
-      </p>
-      <div class="btn-group">
-        <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
-        <a href="#contacto" class="btn btn-outline">Contacto</a>
-      </div>
+  <div class="hero-inner">
+    <div class="hero-tag reveal">Disponible para colaboraciones</div>
+    <h1 class="reveal reveal-delay-1">Economista<br/>enfocado en<br/><em>Data & Estrategia</em></h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Uso datos para entender problemas reales y proponer soluciones efectivas.
+      Enfoque analítico y crítico para encontrar patrones que no siempre son evidentes.
+    </p>
+    <div class="hero-roles reveal reveal-delay-3">
+      <span class="role-pill">Economista</span>
+      <span class="role-pill">Data Analyst</span>
+      <span class="role-pill">Data Science</span>
+      <span class="role-pill">Estrategia Financiera</span>
     </div>
- 
-    <div class="hero-visual">
-      <div class="quote-card">
-        <p>"Uso datos para resolver problemas reales y generar decisiones con impacto."</p>
-        <div class="quote-attr">— José Luis Sánchez</div>
-      </div>
+    <div class="btn-group reveal reveal-delay-4">
+      <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn btn-outline">Contacto</a>
     </div>
   </div>
 </section>
- 
+
 <!-- SOBRE MÍ -->
 <section id="sobre-mi">
   <div class="section-inner">
-    <div class="section-label">Perfil</div>
-    <h2>Sobre mí</h2>
-    <div class="section-divider"></div>
+    <div class="section-label reveal">Perfil</div>
+    <h2 class="reveal reveal-delay-1">Sobre mí</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
     <div class="about-grid">
-      <div class="about-text">
+      <div class="about-text reveal reveal-delay-2">
         <p>Soy economista enfocado en data analytics y data science. Me interesa entender cómo diferentes variables influyen en los resultados y usar esa información para apoyar mejores decisiones.</p>
         <p>Tengo un enfoque analítico y crítico que me permite ver más allá de los datos y encontrar patrones o problemas que no siempre son evidentes.</p>
         <p>A partir de mi formación en economía, aprendí a analizar información desde distintos ángulos, tanto a nivel individual como general, lo que me ayuda a darle contexto a los datos y no solo ver números aislados.</p>
@@ -316,51 +305,48 @@
         <p>Tengo experiencia en la interpretación de indicadores clave de desempeño, transformando datos en insights claros que apoyan la toma de decisiones.</p>
         <p>Me caracterizo por ser una persona orientada a resultados, con buena capacidad de comunicación, pensamiento estructurado y facilidad para adaptarme a distintos entornos de trabajo. Busco aportar valor a través del análisis, la claridad en la información y una visión práctica enfocada en soluciones.</p>
       </div>
-      <div>
-        <div class="skills-list">
-          <div class="skill-item">
-            <div class="skill-label"><span>Python</span><span>75%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>R</span><span>80%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Power BI</span><span>80%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Tableau</span><span>80%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>Econometría & Modelos</span><span>90%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>SQL</span><span>70%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-label"><span>ETL</span><span>70%</span></div>
-            <div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div>
-          </div>
+      <div class="skills-list reveal reveal-delay-3" id="skills-container">
+        <div class="skill-item">
+          <div class="skill-label"><span>Python</span><span>75%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>R</span><span>80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Power BI</span><span>80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Tableau</span><span>80%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>Econometría & Modelos</span><span>90%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>SQL</span><span>70%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-label"><span>ETL</span><span>70%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="70"></div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
- 
+
 <!-- PROYECTOS -->
 <section id="proyectos">
   <div class="section-inner">
-    <div class="section-label">Portafolio</div>
-    <h2>Proyectos destacados</h2>
-    <div class="section-divider"></div>
+    <div class="section-label reveal">Portafolio</div>
+    <h2 class="reveal reveal-delay-1">Proyectos destacados</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
     <div class="projects-grid">
- 
-      <div class="project-card">
+      <div class="project-card reveal reveal-delay-1">
         <div class="project-tag">Fintech · Machine Learning</div>
         <h3>Sistema de Detección de Fraude AML</h3>
         <p>Pipeline completo de detección de lavado de dinero con datos sintéticos, feature engineering, modelo Random Forest, API FastAPI e integración con Power BI. ROI cuantificado en reportes ejecutivos.</p>
@@ -371,8 +357,7 @@
           <span class="tool-badge">Power BI</span>
         </div>
       </div>
- 
-      <div class="project-card">
+      <div class="project-card reveal reveal-delay-2">
         <div class="project-tag">Riesgo Crediticio · BI</div>
         <h3>Credit Risk Analytics — CNBV/Banxico</h3>
         <p>Análisis de riesgo crediticio usando datos abiertos del sistema financiero mexicano (CNBV + Banxico). Dashboard interactivo con métricas de morosidad, segmentación de cartera y alertas de riesgo.</p>
@@ -383,8 +368,7 @@
           <span class="tool-badge">Banxico API</span>
         </div>
       </div>
- 
-      <div class="project-card">
+      <div class="project-card reveal reveal-delay-3">
         <div class="project-tag">Pagos · Analytics</div>
         <h3>Fintech Payments Analytics — SPEI</h3>
         <p>Análisis de flujos de pago del sistema SPEI de Banxico. Visualización de volúmenes, patrones de transferencias interbancarias y tendencias del sistema de pagos mexicano en Tableau.</p>
@@ -395,8 +379,7 @@
           <span class="tool-badge">ETL</span>
         </div>
       </div>
- 
-      <div class="project-card">
+      <div class="project-card reveal reveal-delay-1">
         <div class="project-tag">Econometría · Forecasting</div>
         <h3>Modelo Econométrico de Pronóstico</h3>
         <p>Desarrollo de modelo de series de tiempo para pronóstico de variables macroeconómicas. Incluye análisis de estacionariedad, cointegración y evaluación de precisión predictiva.</p>
@@ -407,8 +390,7 @@
           <span class="tool-badge">Econometría</span>
         </div>
       </div>
- 
-      <div class="project-card">
+      <div class="project-card reveal reveal-delay-2">
         <div class="project-tag">Consultoría · Valuación</div>
         <h3>Consultoría y Valuación Financiera</h3>
         <p>Análisis financiero integral a una empresa: revisión de balance general, estado de resultados y comportamiento de ventas. Se aplicó un modelo de valor ajustado con los hallazgos presentados en un informe ejecutivo.</p>
@@ -419,20 +401,18 @@
           <span class="tool-badge">Informe Ejecutivo</span>
         </div>
       </div>
- 
     </div>
   </div>
 </section>
- 
+
 <!-- EXPERIENCIA -->
 <section id="experiencia">
   <div class="section-inner">
-    <div class="section-label">Trayectoria</div>
-    <h2>Experiencia y formación</h2>
-    <div class="section-divider"></div>
+    <div class="section-label reveal">Trayectoria</div>
+    <h2 class="reveal reveal-delay-1">Experiencia y formación</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
     <div class="timeline">
- 
-      <div class="timeline-item">
+      <div class="timeline-item reveal">
         <div class="timeline-date">2024 — Presente</div>
         <div class="timeline-content">
           <h3>Consultor independiente en datos y estrategia</h3>
@@ -440,8 +420,7 @@
           <p>Desarrollo de modelos financieros, análisis de datos y estrategia para proyectos del sector privado, con enfoque en impacto medible y toma de decisiones basada en evidencia.</p>
         </div>
       </div>
- 
-      <div class="timeline-item">
+      <div class="timeline-item reveal reveal-delay-1">
         <div class="timeline-date">2021 — Presente</div>
         <div class="timeline-content">
           <h3>Licenciatura en Economía</h3>
@@ -449,75 +428,64 @@
           <p>Especialización en econometría, análisis cuantitativo, formulación de proyectos de inversión y finanzas aplicadas.</p>
         </div>
       </div>
- 
-      <div class="timeline-item">
+      <div class="timeline-item reveal reveal-delay-2">
         <div class="timeline-date">Abril 2026</div>
         <div class="timeline-content">
           <h3>Microsoft Power BI Data Analyst</h3>
-          <div class="org">Certificado Profesional · Microsoft <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <div class="org">Certificado Profesional · Microsoft <span style="font-size:0.72rem;color:var(--muted2);font-weight:300">· Coursera</span></div>
           <p>Data Visualization · Data Model · Data Analysis · Extract, Transform, Load · Microsoft Excel</p>
         </div>
       </div>
- 
-      <div class="timeline-item">
-        <div class="timeline-date">Noviembre 2025</div>
-        <div class="timeline-content">
-          <h3>IBM Data Analyst</h3>
-          <div class="org">Certificado Profesional · IBM <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
-          <p>Python Programming · Microsoft Excel · Data Analysis · Spreadsheet Software · Data Visualization</p>
-        </div>
-      </div>
- 
-      <div class="timeline-item">
-        <div class="timeline-date">Septiembre 2025</div>
-        <div class="timeline-content">
-          <h3>Finanzas y Contabilidad para la Toma de Decisiones</h3>
-          <div class="org">Especialización · Universidad Anáhuac <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
-          <p>Análisis financiero, contabilidad aplicada e interpretación de información para la toma de decisiones estratégicas.</p>
-        </div>
-      </div>
- 
-      <div class="timeline-item">
+      <div class="timeline-item reveal reveal-delay-3">
         <div class="timeline-date">Enero 2026</div>
         <div class="timeline-content">
           <h3>Gestión de Proyectos</h3>
-          <div class="org">Especialización · Tecnológico de Monterrey <span style="font-size:0.72rem;color:var(--muted2);font-weight:300;">· Coursera</span></div>
+          <div class="org">Especialización · Tecnológico de Monterrey <span style="font-size:0.72rem;color:var(--muted2);font-weight:300">· Coursera</span></div>
           <p>Metodologías de gestión, planificación y seguimiento de proyectos en entornos profesionales.</p>
         </div>
       </div>
- 
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="timeline-date">Noviembre 2025</div>
+        <div class="timeline-content">
+          <h3>IBM Data Analyst</h3>
+          <div class="org">Certificado Profesional · IBM <span style="font-size:0.72rem;color:var(--muted2);font-weight:300">· Coursera</span></div>
+          <p>Python Programming · Microsoft Excel · Data Analysis · Spreadsheet Software · Data Visualization</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-5">
+        <div class="timeline-date">Septiembre 2025</div>
+        <div class="timeline-content">
+          <h3>Finanzas y Contabilidad para la Toma de Decisiones</h3>
+          <div class="org">Especialización · Universidad Anáhuac <span style="font-size:0.72rem;color:var(--muted2);font-weight:300">· Coursera</span></div>
+          <p>Análisis financiero, contabilidad aplicada e interpretación de información para la toma de decisiones estratégicas.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
- 
+
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-inner">
-    <div class="section-label">Conectemos</div>
-    <h2>Contacto</h2>
-    <div class="section-divider"></div>
+    <div class="section-label reveal">Conectemos</div>
+    <h2 class="reveal reveal-delay-1">Contacto</h2>
+    <div class="section-divider reveal reveal-delay-2"></div>
     <div class="contact-grid">
-      <div>
-        <p class="contact-text">
-          Abierto a oportunidades en análisis de datos, data science y estrategia financiera.
-          Si tienes un proyecto donde los datos puedan generar impacto real, con gusto conversamos.
-        </p>
+      <div class="reveal reveal-delay-2">
+        <p class="contact-text">Abierto a oportunidades en análisis de datos, data science y estrategia financiera. Si tienes un proyecto donde los datos puedan generar impacto real, con gusto conversamos.</p>
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#4c38390c29212d2520622f2321" class="contact-link">
-            <span class="contact-icon">✉</span>
-            <span class="__cf_email__" data-cfemail="f58180b59098949c99db969a98">[email&#160;protected]</span>
+          <a href="mailto:tu@email.com" class="contact-link">
+            <span class="contact-icon">✉</span>tu@email.com
           </a>
           <a href="https://linkedin.com/in/tu-perfil" class="contact-link" target="_blank">
-            <span class="contact-icon">in</span>
-            LinkedIn
+            <span class="contact-icon">in</span>LinkedIn
           </a>
           <a href="https://github.com/tu-usuario" class="contact-link" target="_blank">
-            <span class="contact-icon">⌥</span>
-            GitHub
+            <span class="contact-icon">⌥</span>GitHub
           </a>
         </div>
       </div>
-      <div>
+      <div class="reveal reveal-delay-3">
         <div class="form-group">
           <label>Nombre</label>
           <input type="text" placeholder="Tu nombre"/>
@@ -530,79 +498,193 @@
           <label>Mensaje</label>
           <textarea placeholder="Cuéntame sobre tu proyecto o propuesta..."></textarea>
         </div>
-        <button class="btn btn-primary" style="width:100%">Enviar mensaje</button>
+        <button class="btn btn-primary" style="width:100%;border-radius:10px">Enviar mensaje</button>
       </div>
     </div>
   </div>
 </section>
- 
+
 <footer>
   <div class="footer-name">José Luis Sánchez</div>
   <div>© 2025 · Economista & Data Analyst · México</div>
 </footer>
- 
+
 <script>
+// ============================================================
+// WEBGL SILK SHADER — fondo animado
+// ============================================================
 (function(){
-  const canvas = document.getElementById('hero-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, t = 0;
+  const canvas = document.getElementById('bg-canvas');
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if(!gl) return;
+
+  const VS = `
+    attribute vec2 a_pos;
+    void main(){ gl_Position = vec4(a_pos,0,1); }
+  `;
+
+  const FS = `
+    precision highp float;
+    uniform vec2 u_res;
+    uniform float u_time;
+
+    // Smooth noise helpers
+    vec2 hash2(vec2 p){
+      p = vec2(dot(p,vec2(127.1,311.7)), dot(p,vec2(269.5,183.3)));
+      return -1.0 + 2.0*fract(sin(p)*43758.5453);
+    }
+    float noise(vec2 p){
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      vec2 u = f*f*(3.0-2.0*f);
+      return mix(mix(dot(hash2(i+vec2(0,0)),f-vec2(0,0)),
+                     dot(hash2(i+vec2(1,0)),f-vec2(1,0)),u.x),
+                 mix(dot(hash2(i+vec2(0,1)),f-vec2(0,1)),
+                     dot(hash2(i+vec2(1,1)),f-vec2(1,1)),u.x),u.y);
+    }
+    float fbm(vec2 p){
+      float v=0.0, a=0.5;
+      for(int i=0;i<5;i++){
+        v+=a*noise(p);
+        p=p*2.1+vec2(1.7,9.2);
+        a*=0.5;
+      }
+      return v;
+    }
+
+    void main(){
+      vec2 uv = gl_FragCoord.xy / u_res;
+      uv.y = 1.0 - uv.y;
+
+      float t = u_time * 0.18;
+
+      // Warped coordinates — creates the silk/fluid feel
+      vec2 q = vec2(fbm(uv + t*0.3), fbm(uv + vec2(1.7,9.2)));
+      vec2 r = vec2(fbm(uv + 2.0*q + vec2(1.7+t*0.15, 9.2)),
+                    fbm(uv + 2.0*q + vec2(8.3+t*0.126, 2.8)));
+      float f = fbm(uv + 2.8*r + t*0.05);
+
+      // Warm cream/beige palette
+      // base: #f4efe6 = (0.957, 0.937, 0.902)
+      // dark: #c8a96e = (0.784, 0.663, 0.431)
+      // light: #faf7f2 = (0.98, 0.97, 0.95)
+      vec3 col = mix(
+        vec3(0.957, 0.937, 0.902),   // cream base
+        vec3(0.820, 0.740, 0.620),   // warm tan
+        clamp(f*f*2.5, 0.0, 1.0)
+      );
+      col = mix(col,
+        vec3(0.910, 0.860, 0.790),   // mid tone
+        clamp(length(q)*0.6, 0.0, 1.0)
+      );
+      col = mix(col,
+        vec3(0.980, 0.970, 0.955),   // highlight
+        clamp(f*f*f*3.0, 0.0, 1.0)
+      );
+
+      // Subtle vignette
+      vec2 vig = uv*2.0-1.0;
+      float vignette = 1.0 - dot(vig,vig)*0.18;
+      col *= vignette;
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compile(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, VS));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, FS));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+
+  const posLoc = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes  = gl.getUniformLocation(prog, 'u_res');
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+
   function resize(){
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
   }
   resize();
   window.addEventListener('resize', resize);
-  function noise(x, y, t){
-    return (
-      Math.sin(x * 1.2 + t * 0.6) * 0.4 +
-      Math.sin(y * 0.9 - t * 0.4) * 0.3 +
-      Math.sin((x + y) * 0.7 + t * 0.5) * 0.2 +
-      Math.sin(x * 0.4 - y * 1.1 + t * 0.3) * 0.1
-    );
+
+  let start = performance.now();
+  function frame(){
+    const t = (performance.now() - start) / 1000;
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uTime, t);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(frame);
   }
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-    const cols = 6, rows = 5;
-    for(let i = 0; i < cols; i++){
-      for(let j = 0; j < rows; j++){
-        const nx = i/(cols-1), ny = j/(rows-1);
-        const n = noise(nx*3, ny*3, t);
-        const cx = (nx + n*0.18)*W;
-        const cy = (ny + noise(nx*2.5+1, ny*2.5, t*0.8)*0.18)*H;
-        const r = (0.22+Math.abs(n)*0.14)*Math.min(W,H);
-        const hue = 30+n*12, sat = 30+Math.abs(n)*18, lit = 72+n*10;
-        const alpha = 0.07+Math.abs(n)*0.08;
-        const grad = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
-        grad.addColorStop(0, `hsla(${hue},${sat}%,${lit}%,${alpha})`);
-        grad.addColorStop(1, `hsla(${hue},${sat}%,${lit}%,0)`);
-        ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI*2);
-        ctx.fillStyle = grad;
-        ctx.fill();
+  frame();
+})();
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+(function(){
+  const items = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        // animate skill bars when skills section visible
+        if(e.target.id === 'skills-container' || e.target.closest('#skills-container')){
+          animateBars();
+        }
       }
-    }
-    for(let k = 0; k < 4; k++){
-      const offset = k*0.25;
-      ctx.beginPath();
-      ctx.moveTo(0, H*(0.2+offset*0.15));
-      for(let x = 0; x <= W; x+=6){
-        const nx = x/W;
-        const ny = noise(nx*2+offset, offset*1.5, t*0.7+k);
-        const y = H*(0.15+offset*0.18+ny*0.12);
-        ctx.lineTo(x, y);
-      }
-      ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
-      const wg = ctx.createLinearGradient(0,0,W,H);
-      wg.addColorStop(0,   `hsla(28,35%,78%,${0.04+k*0.015})`);
-      wg.addColorStop(0.5, `hsla(35,28%,82%,${0.06+k*0.01})`);
-      wg.addColorStop(1,   `hsla(22,32%,75%,${0.03+k*0.01})`);
-      ctx.fillStyle = wg; ctx.fill();
-    }
-    t += 0.004;
-    requestAnimationFrame(draw);
+    });
+  },{threshold:0.12});
+  items.forEach(el=>obs.observe(el));
+
+  // Hero elements visible immediately
+  setTimeout(()=>{
+    document.querySelectorAll('#hero .reveal').forEach((el,i)=>{
+      setTimeout(()=>el.classList.add('visible'), i*120);
+    });
+  }, 100);
+
+  function animateBars(){
+    document.querySelectorAll('.skill-bar').forEach(bar=>{
+      const w = bar.getAttribute('data-width');
+      bar.style.width = w + '%';
+    });
   }
-  draw();
+
+  // Also trigger bars when skills container becomes visible
+  const skillsObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) animateBars(); });
+  },{threshold:0.2});
+  const sc = document.getElementById('skills-container');
+  if(sc) skillsObs.observe(sc);
+})();
+
+// ============================================================
+// PARALLAX — hero title subtle movement on scroll
+// ============================================================
+(function(){
+  const hero = document.getElementById('hero');
+  const inner = hero.querySelector('.hero-inner');
+  window.addEventListener('scroll',()=>{
+    const y = window.scrollY;
+    inner.style.transform = `translateY(${y*0.25}px)`;
+    inner.style.opacity = Math.max(0, 1 - y/500);
+  },{passive:true});
 })();
 </script>
 </body>
