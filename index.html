@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --bg: #f5f0e8;
       --bg2: #ede8df;
@@ -22,9 +22,9 @@
       --serif: 'F37 Caslon Display', 'EB Garamond', Georgia, serif;
       --sans: 'DM Sans', system-ui, sans-serif;
     }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       background: var(--bg);
       color: var(--text);
@@ -32,8 +32,8 @@
       font-size: 16px;
       line-height: 1.7;
     }
-
-
+ 
+    /* textura de fondo suave */
     body::before {
       content: '';
       position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -42,7 +42,7 @@
         radial-gradient(ellipse at 85% 75%, rgba(140,110,70,0.07) 0%, transparent 55%),
         radial-gradient(ellipse at 50% 50%, rgba(200,175,130,0.04) 0%, transparent 70%);
     }
-
+ 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -59,7 +59,7 @@
       letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
-
+ 
     /* HERO */
     #hero {
       min-height: 100vh;
@@ -69,17 +69,12 @@
       overflow: hidden;
       position: relative;
     }
-
-    /* círculo decorativo */
-    #hero::after {
-      content: '';
-      position: absolute;
-      right: 5%; top: 50%; transform: translateY(-50%);
-      width: 500px; height: 500px; border-radius: 50%;
-      border: 1px solid rgba(122,92,56,0.08);
-      pointer-events: none;
+ 
+    #hero-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      z-index: 0; pointer-events: none; opacity: 0.6;
     }
-
+ 
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -100,7 +95,7 @@
       color: var(--text); margin-bottom: 1.5rem; letter-spacing: -0.01em;
     }
     h1 span { color: var(--accent); }
-
+ 
     .hero-roles { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
     .role-pill {
       font-size: 0.73rem; letter-spacing: 0.06em;
@@ -108,7 +103,7 @@
       border: 1px solid rgba(122,92,56,0.18);
       padding: 0.3rem 0.85rem; border-radius: 100px;
     }
-
+ 
     .hero-desc { color: var(--muted); font-size: 1rem; max-width: 460px; margin-bottom: 2.5rem; line-height: 1.85; }
     .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn {
@@ -121,10 +116,10 @@
     .btn-primary:hover { background: #5e4528; }
     .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
     .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-
-
+ 
+    /* hero lado derecho */
     .hero-visual { display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; }
-
+ 
     .visual-frame {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -146,7 +141,7 @@
     .mini-bar-bg { flex: 1; height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
     .mini-bar-fill { height: 2px; background: var(--accent); border-radius: 2px; }
     .mini-bar-pct { font-size: 0.7rem; color: var(--muted2); min-width: 30px; text-align: right; }
-
+ 
     .quote-card {
       background: var(--surface2); border: 1px solid var(--border);
       border-radius: 10px; padding: 1.4rem 1.6rem;
@@ -159,14 +154,14 @@
       font-size: 0.73rem; color: var(--muted2); margin-top: 0.75rem;
       letter-spacing: 0.05em; font-style: normal; font-family: var(--sans);
     }
-
+ 
     /* SECTIONS */
     section { padding: 6rem 3rem; border-bottom: 1px solid var(--border); }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
     h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 1rem; color: var(--text); }
     .section-divider { width: 3rem; height: 1px; background: var(--accent); opacity: 0.35; margin-bottom: 3rem; }
-
+ 
     /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
     .about-text { color: var(--muted); line-height: 1.9; }
@@ -179,7 +174,7 @@
     }
     .skill-bar-bg { height: 2px; background: rgba(122,92,56,0.12); border-radius: 2px; }
     .skill-bar { height: 2px; background: var(--accent); border-radius: 2px; }
-
+ 
     /* PROJECTS */
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .project-card {
@@ -200,7 +195,7 @@
       font-size: 0.67rem; background: var(--bg2); border: 1px solid var(--border);
       color: var(--muted); padding: 0.2rem 0.65rem; border-radius: 3px;
     }
-
+ 
     /* EXPERIENCE */
     .timeline { display: flex; flex-direction: column; }
     .timeline-item {
@@ -212,7 +207,7 @@
     .timeline-content h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--text); }
     .timeline-content .org { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.75rem; }
     .timeline-content p { color: var(--muted); font-size: 0.87rem; }
-
+ 
     /* CONTACT */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .contact-text { color: var(--muted); line-height: 1.9; margin-bottom: 2rem; font-size: 0.95rem; }
@@ -224,7 +219,7 @@
     }
     .contact-link:hover { border-color: var(--accent); color: var(--accent); }
     .contact-icon { font-size: 1rem; width: 20px; text-align: center; color: var(--muted2); }
-
+ 
     /* FORM */
     .form-group { margin-bottom: 1.25rem; }
     .form-group label {
@@ -239,7 +234,7 @@
     .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted2); }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
     .form-group textarea { min-height: 120px; resize: vertical; }
-
+ 
     /* FOOTER */
     footer {
       padding: 2rem 3rem;
@@ -248,7 +243,7 @@
       border-top: 1px solid var(--border);
     }
     .footer-name { font-family: var(--serif); color: var(--accent); font-size: 1rem; }
-
+ 
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -261,7 +256,7 @@
   </style>
 </head>
 <body>
-
+ 
 <nav>
   <div class="nav-logo">JLS</div>
   <ul class="nav-links">
@@ -271,21 +266,22 @@
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
-
+ 
 <!-- HERO -->
 <section id="hero">
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-grid">
     <div>
       <div class="hero-tag">Disponible para colaboraciones</div>
       <h1>Economista<br/>enfocado en<br/><span>Data & Estrategia</span></h1>
-
+ 
       <div class="hero-roles">
         <span class="role-pill">Economista</span>
         <span class="role-pill">Data Analyst</span>
         <span class="role-pill">Data Science</span>
         <span class="role-pill">Estrategia Financiera</span>
       </div>
-
+ 
       <p class="hero-desc">
         Uso datos para entender problemas reales y proponer soluciones efectivas.
         Enfoque analítico y crítico para encontrar patrones que no siempre son evidentes.
@@ -295,56 +291,16 @@
         <a href="#contacto" class="btn btn-outline">Contacto</a>
       </div>
     </div>
-
+ 
     <div class="hero-visual">
-      <div class="visual-frame">
-        <div class="visual-label">Herramientas principales</div>
-        <div class="mini-bars">
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">Python</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:75%"></div></div>
-            <div class="mini-bar-pct">75%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">R</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
-            <div class="mini-bar-pct">80%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">Power BI</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
-            <div class="mini-bar-pct">80%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">Tableau</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:80%"></div></div>
-            <div class="mini-bar-pct">80%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">Econometría</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:90%"></div></div>
-            <div class="mini-bar-pct">90%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">SQL</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:70%"></div></div>
-            <div class="mini-bar-pct">70%</div>
-          </div>
-          <div class="mini-bar-row">
-            <div class="mini-bar-name">ETL</div>
-            <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:70%"></div></div>
-            <div class="mini-bar-pct">70%</div>
-          </div>
-        </div>
-      </div>
-
       <div class="quote-card">
         <p>"Uso datos para resolver problemas reales y generar decisiones con impacto."</p>
+        <div class="quote-attr">— José Luis Sánchez</div>
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- SOBRE MÍ -->
 <section id="sobre-mi">
   <div class="section-inner">
@@ -395,7 +351,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- PROYECTOS -->
 <section id="proyectos">
   <div class="section-inner">
@@ -403,7 +359,7 @@
     <h2>Proyectos destacados</h2>
     <div class="section-divider"></div>
     <div class="projects-grid">
-
+ 
       <div class="project-card">
         <div class="project-tag">Fintech · Machine Learning</div>
         <h3>Sistema de Detección de Fraude AML</h3>
@@ -415,7 +371,7 @@
           <span class="tool-badge">Power BI</span>
         </div>
       </div>
-
+ 
       <div class="project-card">
         <div class="project-tag">Riesgo Crediticio · BI</div>
         <h3>Credit Risk Analytics — CNBV/Banxico</h3>
@@ -427,7 +383,7 @@
           <span class="tool-badge">Banxico API</span>
         </div>
       </div>
-
+ 
       <div class="project-card">
         <div class="project-tag">Pagos · Analytics</div>
         <h3>Fintech Payments Analytics — SPEI</h3>
@@ -439,7 +395,7 @@
           <span class="tool-badge">ETL</span>
         </div>
       </div>
-
+ 
       <div class="project-card">
         <div class="project-tag">Econometría · Forecasting</div>
         <h3>Modelo Econométrico de Pronóstico</h3>
@@ -451,7 +407,7 @@
           <span class="tool-badge">Econometría</span>
         </div>
       </div>
-
+ 
       <div class="project-card">
         <div class="project-tag">Consultoría · Valuación</div>
         <h3>Consultoría y Valuación Financiera</h3>
@@ -463,11 +419,11 @@
           <span class="tool-badge">Informe Ejecutivo</span>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <!-- EXPERIENCIA -->
 <section id="experiencia">
   <div class="section-inner">
@@ -475,7 +431,7 @@
     <h2>Experiencia y formación</h2>
     <div class="section-divider"></div>
     <div class="timeline">
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">2024 — Presente</div>
         <div class="timeline-content">
@@ -484,7 +440,7 @@
           <p>Desarrollo de modelos financieros, análisis de datos y estrategia para proyectos del sector privado, con enfoque en impacto medible y toma de decisiones basada en evidencia.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">2021 — Presente</div>
         <div class="timeline-content">
@@ -493,7 +449,7 @@
           <p>Especialización en econometría, análisis cuantitativo, formulación de proyectos de inversión y finanzas aplicadas.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">Abril 2026</div>
         <div class="timeline-content">
@@ -502,7 +458,7 @@
           <p>Data Visualization · Data Model · Data Analysis · Extract, Transform, Load · Microsoft Excel</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">Noviembre 2025</div>
         <div class="timeline-content">
@@ -511,7 +467,7 @@
           <p>Python Programming · Microsoft Excel · Data Analysis · Spreadsheet Software · Data Visualization</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">Septiembre 2025</div>
         <div class="timeline-content">
@@ -520,7 +476,7 @@
           <p>Análisis financiero, contabilidad aplicada e interpretación de información para la toma de decisiones estratégicas.</p>
         </div>
       </div>
-
+ 
       <div class="timeline-item">
         <div class="timeline-date">Enero 2026</div>
         <div class="timeline-content">
@@ -529,11 +485,11 @@
           <p>Metodologías de gestión, planificación y seguimiento de proyectos en entornos profesionales.</p>
         </div>
       </div>
-
+ 
     </div>
   </div>
 </section>
-
+ 
 <!-- CONTACTO -->
 <section id="contacto">
   <div class="section-inner">
@@ -579,6 +535,75 @@
     </div>
   </div>
 </section>
-
+ 
 <footer>
-  <div class="footer
+  <div class="footer-name">José Luis Sánchez</div>
+  <div>© 2025 · Economista & Data Analyst · México</div>
+</footer>
+ 
+<script>
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, t = 0;
+  function resize(){
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  function noise(x, y, t){
+    return (
+      Math.sin(x * 1.2 + t * 0.6) * 0.4 +
+      Math.sin(y * 0.9 - t * 0.4) * 0.3 +
+      Math.sin((x + y) * 0.7 + t * 0.5) * 0.2 +
+      Math.sin(x * 0.4 - y * 1.1 + t * 0.3) * 0.1
+    );
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    const cols = 6, rows = 5;
+    for(let i = 0; i < cols; i++){
+      for(let j = 0; j < rows; j++){
+        const nx = i/(cols-1), ny = j/(rows-1);
+        const n = noise(nx*3, ny*3, t);
+        const cx = (nx + n*0.18)*W;
+        const cy = (ny + noise(nx*2.5+1, ny*2.5, t*0.8)*0.18)*H;
+        const r = (0.22+Math.abs(n)*0.14)*Math.min(W,H);
+        const hue = 30+n*12, sat = 30+Math.abs(n)*18, lit = 72+n*10;
+        const alpha = 0.07+Math.abs(n)*0.08;
+        const grad = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+        grad.addColorStop(0, `hsla(${hue},${sat}%,${lit}%,${alpha})`);
+        grad.addColorStop(1, `hsla(${hue},${sat}%,${lit}%,0)`);
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI*2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+    }
+    for(let k = 0; k < 4; k++){
+      const offset = k*0.25;
+      ctx.beginPath();
+      ctx.moveTo(0, H*(0.2+offset*0.15));
+      for(let x = 0; x <= W; x+=6){
+        const nx = x/W;
+        const ny = noise(nx*2+offset, offset*1.5, t*0.7+k);
+        const y = H*(0.15+offset*0.18+ny*0.12);
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(W,H); ctx.lineTo(0,H); ctx.closePath();
+      const wg = ctx.createLinearGradient(0,0,W,H);
+      wg.addColorStop(0,   `hsla(28,35%,78%,${0.04+k*0.015})`);
+      wg.addColorStop(0.5, `hsla(35,28%,82%,${0.06+k*0.01})`);
+      wg.addColorStop(1,   `hsla(22,32%,75%,${0.03+k*0.01})`);
+      ctx.fillStyle = wg; ctx.fill();
+    }
+    t += 0.004;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
