@@ -191,6 +191,16 @@ h2{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.8rem);margin-bottom:1
 .project-card h3{font-family:var(--serif);font-size:1.15rem;margin-bottom:0.75rem;color:var(--text)}
 .project-card p{color:var(--muted);font-size:0.87rem;line-height:1.75;margin-bottom:1.25rem}
 .project-tools{display:flex;flex-wrap:wrap;gap:0.4rem}
+.github-badge{
+  display:inline-flex;align-items:center;gap:0.35rem;
+  font-size:0.64rem;letter-spacing:0.06em;
+  background:rgba(122,92,56,0.08);
+  border:1px solid rgba(122,92,56,0.22);
+  color:var(--accent);padding:0.22rem 0.6rem;
+  border-radius:100px;margin-bottom:0.75rem;
+  text-decoration:none;transition:background 0.2s,border-color 0.2s;
+}
+.github-badge:hover{background:rgba(122,92,56,0.15);border-color:var(--accent)}
 .tool-badge{
   font-size:0.67rem;background:rgba(122,92,56,0.06);
   border:1px solid rgba(122,92,56,0.15);
@@ -276,7 +286,6 @@ footer{
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <div class="hero-tag reveal">Disponible para colaboraciones</div>
     <div class="hero-name reveal reveal-delay-1">José Luis Sánchez</div>
     <h1 class="reveal reveal-delay-2">Economista<br/>enfocado en<br/><em>Data & Estrategia</em></h1>
     <p class="hero-sub reveal reveal-delay-3">
@@ -304,12 +313,11 @@ footer{
     <div class="section-divider reveal reveal-delay-2"></div>
     <div class="about-grid">
       <div class="about-text reveal reveal-delay-2">
-        <p>Soy economista enfocado en data analytics y data science. Me interesa entender cómo diferentes variables influyen en los resultados y usar esa información para apoyar mejores decisiones.</p>
-        <p>Tengo un enfoque analítico y crítico que me permite ver más allá de los datos y encontrar patrones o problemas que no siempre son evidentes.</p>
-        <p>A partir de mi formación en economía, aprendí a analizar información desde distintos ángulos, tanto a nivel individual como general, lo que me ayuda a darle contexto a los datos y no solo ver números aislados.</p>
-        <p>Trabajo con herramientas como Python, R, SQL, Excel, Power BI y Tableau para limpiar, organizar y analizar información. También tengo experiencia trabajando con bases de datos, APIs y procesos ETL, siempre cuidando que los datos sean confiables y estén disponibles cuando se necesitan.</p>
-        <p>Tengo experiencia en la interpretación de indicadores clave de desempeño, transformando datos en insights claros que apoyan la toma de decisiones.</p>
-        <p>Me caracterizo por ser una persona orientada a resultados, con buena capacidad de comunicación, pensamiento estructurado y facilidad para adaptarme a distintos entornos de trabajo. Busco aportar valor a través del análisis, la claridad en la información y una visión práctica enfocada en soluciones.</p>
+        <p>Soy economista enfocado en data analytics y data science. Me interesa entender cómo las variables influyen en los resultados y utilizar esa información para mejorar la toma de decisiones.</p>
+        <p>Cuento con un enfoque analítico y crítico que me permite identificar patrones y problemas no evidentes, integrando el contexto económico para evitar interpretaciones aisladas de los datos.</p>
+        <p>Trabajo con herramientas como Python, R, SQL, Excel, Power BI y Tableau para limpiar, estructurar y analizar información. Tengo experiencia con bases de datos, APIs y procesos ETL, asegurando la calidad y disponibilidad de los datos.</p>
+        <p>He trabajado en la interpretación de indicadores clave de desempeño, transformando datos en insights claros y accionables.</p>
+        <p>Me caracterizo por un pensamiento estructurado, orientación a resultados y capacidad de adaptación, buscando siempre aportar valor mediante análisis claros y soluciones prácticas.</p>
       </div>
       <div class="skills-list reveal reveal-delay-3" id="skills-container">
         <div class="skill-item">
@@ -317,8 +325,8 @@ footer{
           <div class="skill-bar-bg"><div class="skill-bar" data-width="75"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-label"><span>R</span><span>80%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar" data-width="80"></div></div>
+          <div class="skill-label"><span>R</span><span>75%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="75"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-label"><span>Power BI</span><span>80%</span></div>
@@ -333,8 +341,8 @@ footer{
           <div class="skill-bar-bg"><div class="skill-bar" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-label"><span>SQL</span><span>70%</span></div>
-          <div class="skill-bar-bg"><div class="skill-bar" data-width="70"></div></div>
+          <div class="skill-label"><span>SQL</span><span>60%</span></div>
+          <div class="skill-bar-bg"><div class="skill-bar" data-width="60"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-label"><span>ETL</span><span>70%</span></div>
@@ -354,6 +362,10 @@ footer{
     <div class="projects-grid">
       <div class="project-card reveal reveal-delay-1">
         <div class="project-tag">Fintech · Machine Learning</div>
+        <a href="https://github.com/joseeesz?tab=repositories" target="_blank" class="github-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Disponible en GitHub
+        </a>
         <h3>Sistema de Detección de Fraude AML</h3>
         <p>Pipeline completo de detección de lavado de dinero con datos sintéticos, feature engineering, modelo Random Forest, API FastAPI e integración con Power BI. ROI cuantificado en reportes ejecutivos.</p>
         <div class="project-tools">
@@ -365,6 +377,10 @@ footer{
       </div>
       <div class="project-card reveal reveal-delay-2">
         <div class="project-tag">Riesgo Crediticio · BI</div>
+        <a href="https://github.com/joseeesz?tab=repositories" target="_blank" class="github-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Disponible en GitHub
+        </a>
         <h3>Credit Risk Analytics — CNBV/Banxico</h3>
         <p>Análisis de riesgo crediticio usando datos abiertos del sistema financiero mexicano (CNBV + Banxico). Dashboard interactivo con métricas de morosidad, segmentación de cartera y alertas de riesgo.</p>
         <div class="project-tools">
@@ -376,6 +392,10 @@ footer{
       </div>
       <div class="project-card reveal reveal-delay-3">
         <div class="project-tag">Pagos · Analytics</div>
+        <a href="https://github.com/joseeesz?tab=repositories" target="_blank" class="github-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Disponible en GitHub
+        </a>
         <h3>Fintech Payments Analytics — SPEI</h3>
         <p>Análisis de flujos de pago del sistema SPEI de Banxico. Visualización de volúmenes, patrones de transferencias interbancarias y tendencias del sistema de pagos mexicano en Tableau.</p>
         <div class="project-tools">
@@ -386,14 +406,19 @@ footer{
         </div>
       </div>
       <div class="project-card reveal reveal-delay-1">
-        <div class="project-tag">Econometría · Forecasting</div>
-        <h3>Modelo Econométrico de Pronóstico</h3>
-        <p>Desarrollo de modelo de series de tiempo para pronóstico de variables macroeconómicas. Incluye análisis de estacionariedad, cointegración y evaluación de precisión predictiva.</p>
+        <div class="project-tag">Mercados · Forecasting</div>
+        <a href="https://github.com/joseeesz?tab=repositories" target="_blank" class="github-badge">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          Disponible en GitHub
+        </a>
+        <h3>Análisis y predicción de rendimientos del mercado financiero</h3>
+        <p>Modelo de regresión del rendimiento del S&P 500 en función de DXY, VIX, Gold y US Treasury Yields. Forecast de precio a 30/60 días con ARIMA/ETS. Activos via Yahoo Finance: S&P 500, NASDAQ 100, Gold, US 10Y Yield, DXY, VIX.</p>
         <div class="project-tools">
-          <span class="tool-badge">R</span>
+          <span class="tool-badge">Python</span>
+          <span class="tool-badge">ARIMA/ETS</span>
+          <span class="tool-badge">Yahoo Finance</span>
+          <span class="tool-badge">Regresión</span>
           <span class="tool-badge">Series de Tiempo</span>
-          <span class="tool-badge">ARIMA</span>
-          <span class="tool-badge">Econometría</span>
         </div>
       </div>
       <div class="project-card reveal reveal-delay-2">
@@ -408,10 +433,14 @@ footer{
         </div>
       </div>
     </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal reveal-delay-3">
+      <a href="https://github.com/joseeesz?tab=repositories" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.6rem;border-radius:100px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        Ver todos los repositorios en GitHub
+      </a>
+    </div>
   </div>
 </section>
-
-<!-- EXPERIENCIA -->
 <section id="experiencia">
   <div class="section-inner">
     <div class="section-label reveal">Trayectoria</div>
@@ -480,14 +509,13 @@ footer{
       <div class="reveal reveal-delay-2">
         <p class="contact-text">Abierto a oportunidades en análisis de datos, data science y estrategia financiera. Si tienes un proyecto donde los datos puedan generar impacto real, con gusto conversamos.</p>
         <div class="contact-links">
-          <a href="/cdn-cgi/l/email-protection#a4d0d1e4c1c9c5cdc88ac7cbc9" class="contact-link">
-            <span class="contact-icon">✉</span><span class="__cf_email__" data-cfemail="71050431141c10181d5f121e1c">[email&#160;protected]</span>
+          <a href="mailto:jsanchez.eco@outlook.com" class="contact-link">
+            <span class="contact-icon">✉</span>jsanchez.eco@outlook.com
           </a>
-          <a href="https://linkedin.com/in/tu-perfil" class="contact-link" target="_blank">
-            <span class="contact-icon">in</span>LinkedIn
-          </a>
-          <a href="https://github.com/tu-usuario" class="contact-link" target="_blank">
-            <span class="contact-icon">⌥</span>GitHub
+          <a href="https://github.com/joseeesz" class="contact-link" target="_blank">
+            <span class="contact-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </span>github.com/joseeesz
           </a>
         </div>
       </div>
